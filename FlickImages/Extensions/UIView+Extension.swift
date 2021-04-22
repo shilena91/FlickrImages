@@ -23,6 +23,14 @@ extension UIView {
     }
     
     
+    func center(inView view: UIView) {
+        NSLayoutConstraint.activate([
+            self.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            self.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    
     func addSubViews(_ views: UIView...) {
         for view in views {
             addSubview(view)
