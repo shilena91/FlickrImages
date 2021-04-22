@@ -5,4 +5,8 @@
 //  Created by Hoang Pham on 22.4.2021.
 //
 
-import Foundation
+import UIKit
+
+enum Images {
+    static let placeholder = UIImage(named: "image")
+}

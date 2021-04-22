@@ -7,6 +7,28 @@
 
 import Foundation
 
-struct PhotosListViewModel {    
+final class PhotosListViewModel {
     
+    private(set) var photosList = [Photo]()
+    private var service: PhotosServiceCallProtocol = PhotosServiceCall.shared
+
+    
+    func numberOfItems() -> Int {
+        return photosList.count
+    }
+
+    
+    func fetchPhotos(searchTerm: String, completion: @escaping (Result<Bool, NetworkErrors>) -> Void) {
+        service.fetchPhotos(searchTerm: searchTerm, completion: { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let jsonData):
+                self.photosList = jsonData.photos.photo
+                completion(.success(true))
+            case .failure(let error):
+                print("fetch photos error \(error)")
+                completion(.failure(error))
+            }
+        })
+    }
 }

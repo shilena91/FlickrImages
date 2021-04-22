@@ -7,26 +7,28 @@
 
 import UIKit
 
-class NetworkService {
+final class NetworkService {
     
     static let shared = NetworkService()
     let cache = NSCache<NSString, UIImage>()
-
-    
-    private let apiKey = "b59eaa142fbb03d0ba6c93882fd62e30"
-    private let baseURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&text=car&format=json&nojsoncallback=1"
     
     private init() {}
+
     
-    func requestFor(page: Int, completion: @escaping (Result<Photos, NetworkErrors>) -> Void) {
-        let endpoint = "\(baseURL)&api_key=\(apiKey)&page=\(page)"
-                
-        guard let url = URL(string: endpoint) else {
+    func loadData(urlString: String, parameters: [String: String], completion: @escaping(Result<Data, NetworkErrors>) -> Void) {
+        guard let url = URLComponents(string: urlString) else {
             completion(.failure(.invalidURL))
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        var components: URLComponents = url
+        components.queryItems = parameters.map { (key, value) in
+            URLQueryItem(name: key, value: value)
+        }
+        
+        print(components.url ?? "nil url")
+        
+        let task = URLSession.shared.dataTask(with: components.url!) { (data, response, error) in
             
             if error != nil {
                 completion(.failure(.unableToComplete(error!)))
@@ -45,34 +47,26 @@ class NetworkService {
                 return
             }
             
-            do {
-                let decoder = JSONDecoder()
-                let jsonData = try decoder.decode(PhotosModel.self, from: data)
-                let photos = jsonData.photos
-                DispatchQueue.main.async {
-                    completion(.success(photos))
-                }
-            } catch {
-                completion(.failure(.parseJsonFailed(error)))
-            }
+            completion(.success(data))
         }
         task.resume()
     }
     
-    func downloadImage(from urlString: URL?, completion: @escaping (UIImage?) -> Void) {
-//        let cacheKey = NSString(string: urlString)
+    
+    func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
+        let cacheKey = NSString(string: urlString)
         
-//        if let image = cache.object(forKey: cacheKey) {
-//            completion(image)
-//            return
-//        }
+        if let image = cache.object(forKey: cacheKey) {
+            completion(image)
+            return
+        }
         
-//        guard let url = URL(string: urlString) else {
-//            return
-//
-//        }
+        guard let url = URL(string: urlString) else {
+            return
+
+        }
         
-        let task = URLSession.shared.dataTask(with: urlString!) { [weak self] (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             guard let self = self,
                 error == nil,
                 let response = response as? HTTPURLResponse, response.statusCode == 200,
@@ -83,7 +77,7 @@ class NetworkService {
                 return
             }
             
-//            self.cache.setObject(image, forKey: cacheKey)
+            self.cache.setObject(image, forKey: cacheKey)
             DispatchQueue.main.async {
                 completion(image)
             }
