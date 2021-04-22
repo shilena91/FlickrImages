@@ -49,10 +49,11 @@ final class PhotosServiceCall: PhotosServiceCallProtocol {
                 }
             case .failure(let error):
                 print("network load data error: ", error)
-
+                completion(.failure(.other))
             }
         })
     }
+
     
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
         let cacheKey = NSString(string: urlString)

@@ -13,6 +13,7 @@ enum NetworkErrors: CustomDebugStringConvertible, Error {
     case parseJsonFailed(Error)
     case invalidURL
     case unableToComplete(Error)
+    case other
 
     var debugDescription: String {
         switch self {
@@ -26,6 +27,8 @@ enum NetworkErrors: CustomDebugStringConvertible, Error {
             return "Data received from the server was invalid. Please try again."
         case .invalidURL:
             return "Invalid URL."
+        case .other:
+            return "Please check your internet and try again."
         }
     }
 }
