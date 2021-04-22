@@ -33,7 +33,7 @@ final class FlickrImageView: UIImageView {
     
     
     func downloadImage(from urlString: String) {
-        NetworkService.shared.downloadImage(from: urlString) { [weak self] (image) in
+        PhotosServiceCall.shared.downloadImage(from: urlString) { [weak self] (image) in
             guard let self = self else { return }
 
             DispatchQueue.main.async {

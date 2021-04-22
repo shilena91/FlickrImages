@@ -5,17 +5,22 @@
 //  Created by Hoang Pham on 22.4.2021.
 //
 
-import Foundation
+import UIKit
 
 protocol PhotosServiceCallProtocol: class {
     func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void)
+    func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void)
 }
 
 final class PhotosServiceCall: PhotosServiceCallProtocol {
     
     static let shared = PhotosServiceCall()
+    let cache = NSCache<NSString, UIImage>()
     
     let endpoint = APIConstants.baseURL
+    
+    private init() {}
+    
     
     func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void) {
         var parameters: [String: String] = [
@@ -47,5 +52,37 @@ final class PhotosServiceCall: PhotosServiceCallProtocol {
 
             }
         })
+    }
+    
+    func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
+        let cacheKey = NSString(string: urlString)
+        
+        if let image = cache.object(forKey: cacheKey) {
+            completion(image)
+            return
+        }
+        
+        guard let url = URL(string: urlString) else {
+            return
+
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let self = self,
+                error == nil,
+                let response = response as? HTTPURLResponse, response.statusCode == 200,
+                let data = data,
+                let image = UIImage(data: data)
+            else {
+                completion(nil)
+                return
+            }
+            
+            self.cache.setObject(image, forKey: cacheKey)
+            DispatchQueue.main.async {
+                completion(image)
+            }
+        }
+        task.resume()
     }
 }
