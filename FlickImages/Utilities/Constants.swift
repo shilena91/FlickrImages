@@ -10,3 +10,13 @@ import UIKit
 enum Images {
     static let placeholder = UIImage(named: "image")
 }
+
+enum Sizes {
+    static let flickrImageViewSize: CGFloat = 90
+    static let categoryFontSize: CGFloat = 15
+}
+
+enum NotificationConstant {
+    static let getKeywordName = "getKeyword"
+    static let getKeywordKey = "keyword"
+}

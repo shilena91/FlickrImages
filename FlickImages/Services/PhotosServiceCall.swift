@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol PhotosServiceCallProtocol: class {
+protocol PhotosServiceCallProtocol {
     func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void)
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void)
 }
@@ -15,16 +15,16 @@ protocol PhotosServiceCallProtocol: class {
 final class PhotosServiceCall: PhotosServiceCallProtocol {
     
     static let shared = PhotosServiceCall()
-    let cache = NSCache<NSString, UIImage>()
+    private let cache = NSCache<NSString, UIImage>()
     
-    let endpoint = APIConstants.baseURL
+    private let endpoint = APIConstants.baseURL
     
     private init() {}
     
     
     func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void) {
         var parameters: [String: String] = [
-            APIKey.method: APIConstants.APIMethods_PhotosSearch,
+            APIKey.method: APIConstants.apiMethods_PhotosSearch,
             APIKey.apiKey: APIConstants.apiKey,
             APIKey.nojsoncallbackKey: "1",
             APIKey.formatKey: "json",
@@ -41,9 +41,7 @@ final class PhotosServiceCall: PhotosServiceCallProtocol {
                 do {
                     let decoder = JSONDecoder()
                     let jsonData = try decoder.decode(PhotosModel.self, from: data)
-                    DispatchQueue.main.async {
-                        completion(.success(jsonData))
-                    }
+                    completion(.success(jsonData))
                 } catch {
                     completion(.failure(.parseJsonFailed(error)))
                 }
@@ -80,9 +78,7 @@ final class PhotosServiceCall: PhotosServiceCallProtocol {
             }
             
             self.cache.setObject(image, forKey: cacheKey)
-            DispatchQueue.main.async {
-                completion(image)
-            }
+            completion(image)
         }
         task.resume()
     }

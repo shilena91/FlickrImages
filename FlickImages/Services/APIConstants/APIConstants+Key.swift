@@ -10,7 +10,7 @@ import Foundation
 enum APIConstants {
     static let baseURL = "https://api.flickr.com/services/rest/"
     static let apiKey = "b59eaa142fbb03d0ba6c93882fd62e30"
-    static let APIMethods_PhotosSearch =  "flickr.photos.search"
+    static let apiMethods_PhotosSearch =  "flickr.photos.search"
 }
 
 enum APIKey {

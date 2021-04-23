@@ -14,7 +14,7 @@ final class NetworkService {
     private init() {}
 
     
-    func loadData(urlString: String, parameters: [String: String], completion: @escaping(Result<Data, NetworkErrors>) -> Void) {
+    func loadData(urlString: String, parameters: [String: String], completion: @escaping (Result<Data, NetworkErrors>) -> Void) {
         guard let url = URLComponents(string: urlString) else {
             completion(.failure(.invalidURL))
             return
