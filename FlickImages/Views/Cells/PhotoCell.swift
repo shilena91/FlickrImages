@@ -11,7 +11,7 @@ final class PhotoCell: UICollectionViewCell {
     
     static let reuseID = "PhotoCell"
     private let flickrImageView = FlickrImageView(frame: .zero)
-    private let imageTitleLabel = FITitleLabel(textAlignment: .center, fontSize: 16)
+    private let imageTitleLabel = FITitleLabel(textAlignment: .center, fontSize: 16, textColor: .black)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,7 +51,7 @@ final class PhotoCell: UICollectionViewCell {
             imageTitleLabel.topAnchor.constraint(equalTo: flickrImageView.bottomAnchor, constant: 12),
             imageTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             imageTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            imageTitleLabel.heightAnchor.constraint(equalToConstant: 20)
+            imageTitleLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }
