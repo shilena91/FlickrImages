@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainImagesVC: UIViewController {
+final class MainImagesVC: UIViewController {
 
     var photosListViewModel = PhotosListViewModel()
     
@@ -16,14 +16,18 @@ class MainImagesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Flickr Images"
-      
+              
         configureCollectionView()
-        configureSearchController()
+        configureNavigationController()
         configureActivityIndicator()
         
         viewModelFetchPhotos()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeywordChosen(notification:)), name: Notification.Name(NotificationConstant.getKeywordName), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -42,16 +46,34 @@ class MainImagesVC: UIViewController {
             }
         }
     }
-    
+
+    // MARK: - Private methods
     
     private func updateUI() {
-        if photosListViewModel.photosList.isEmpty {
+        if photosListViewModel.numberOfItems() == 0 {
             showAlert(message: "Can't find any photo from your search, try something else!")
             return
         }
         collectionView.reloadData()
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
 
+    
+    @objc private func onKeywordChosen(notification: Notification) {
+        if let keyword = notification.userInfo?[NotificationConstant.getKeywordKey] as? String {
+            viewModelFetchPhotos(keyword)
+            navigationItem.searchController?.searchBar.text = keyword
+        }
+    }
+    
+    
+    @objc private func categorizeButtonPressed() {
+        let destVC = CategoriesVC()
+        let navController = UINavigationController(rootViewController: destVC)
+
+        present(navController, animated: true)
+    }
+    // MARK: - Congigure UI
     
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createTwoColumnFlowLayout(in: view))
@@ -63,12 +85,15 @@ class MainImagesVC: UIViewController {
     }
 
     
-    private func configureSearchController() {
+    private func configureNavigationController() {
         let searchController = UISearchController()
         
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
+        navigationItem.title = "Flickr Images"
+    
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Categorizes", style: .plain, target: self, action: #selector(categorizeButtonPressed))
     }
     
     
@@ -96,5 +121,4 @@ extension MainImagesVC: UIScrollViewDelegate {
             navigationItem.hidesSearchBarWhenScrolling = true
         }
     }
-
 }
