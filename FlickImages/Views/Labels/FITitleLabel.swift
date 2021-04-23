@@ -20,19 +20,20 @@ final class FITitleLabel: UILabel {
     }
     
     
-    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat, textColor: UIColor) {
         self.init(frame: .zero)
         self.textAlignment = textAlignment
         font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        self.textColor = textColor
     }
     
     
     private func configure() {
-        textColor = .label
+        translatesAutoresizingMaskIntoConstraints = false
+        numberOfLines = 2
+        lineBreakMode = .byTruncatingTail
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.9
-        lineBreakMode = .byTruncatingTail
-        translatesAutoresizingMaskIntoConstraints = false
     }
 
 }
