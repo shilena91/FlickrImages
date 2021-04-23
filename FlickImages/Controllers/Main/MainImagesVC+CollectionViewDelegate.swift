@@ -17,7 +17,7 @@ extension MainImagesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseID, for: indexPath) as! PhotoCell
         
-        cell.set(photo: photosListViewModel.photosList[indexPath.row])
+        cell.set(photo: photosListViewModel.getPhoto(byPosition: indexPath.row))
         
         return cell
     }

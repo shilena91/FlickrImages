@@ -9,12 +9,17 @@ import Foundation
 
 final class PhotosListViewModel {
     
-    private(set) var photosList = [Photo]()
+    private var photosList = [Photo]()
     private var service: PhotosServiceCallProtocol = PhotosServiceCall.shared
 
     
     func numberOfItems() -> Int {
         return photosList.count
+    }
+
+    
+    func getPhoto(byPosition: Int) -> Photo {
+        return photosList[byPosition]
     }
 
     
