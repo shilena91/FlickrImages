@@ -22,9 +22,7 @@ extension MainImagesVC: UISearchBarDelegate {
     
     private func handleFlickrSearch(_ searchText: String) {
         if !searchText.isEmpty {
-            let text = searchText.replacingOccurrences(of: " ", with: "+")
-            viewModelFetchPhotos(text)
+            viewModelFetchPhotos(searchText)
         }
     }
 }
-

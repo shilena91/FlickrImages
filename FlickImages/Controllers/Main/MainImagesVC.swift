@@ -34,7 +34,9 @@ final class MainImagesVC: UIViewController {
     func viewModelFetchPhotos(_ searchText: String = "") {
         activityIndicator.startAnimating()
 
-        photosListViewModel.fetchPhotos(searchTerm: searchText) { [weak self ] (result) in
+        let text = searchText.replacingOccurrences(of: " ", with: "+")
+
+        photosListViewModel.fetchPhotos(searchTerm: text) { [weak self ] (result) in
             guard let self = self else { return }
             self.activityIndicator.stopAnimating()
             
