@@ -7,21 +7,25 @@
 
 import Foundation
 
-final class CategoriesViewModel {
+final class CategoriesViewModel: CategoriesDataSourceProtocol {
+    
+    typealias T = CategoryProtocol
     
     private var categories: CategoriesModel = CategoriesModel()
 
-    func getTitle() -> String {
+    
+    func getTitle() -> String? {
         return categories.title
+    }
+    
+    
+    func numberOfItems() -> Int {
+        return categories.count
     }
 
     
-    func numberOfCategorizes() -> Int {
-        return categories.count
-    }
-    
-    
-    func getCategoryType(byPosition position: Int) -> CategoryProtocol {
+    func getItem(byPosition position: Int) -> CategoryProtocol {
         return categories.types[position]
     }
+    
 }

@@ -7,7 +7,9 @@
 
 import Foundation
 
-final class CategoryKeywordViewModel {
+final class CategoryKeywordViewModel: CategoriesDataSourceProtocol {
+    
+    typealias T = String
     
     private var keywordsModel: KeywordsProtocol
     
@@ -16,12 +18,13 @@ final class CategoryKeywordViewModel {
     }
 
     
-    func numberOfKeywords() -> Int {
+    func numberOfItems() -> Int {
         return keywordsModel.keywords.count
     }
 
     
-    func getKeyword(byPosition position: Int) -> String {
+    func getItem(byPosition position: Int) -> String {
         return keywordsModel.keywords[position]
     }
+    
 }
