@@ -10,7 +10,7 @@ import Foundation
 final class PhotosListViewModel {
     
     private var photosList = [Photo]()
-    private var service: PhotosServiceCallProtocol = PhotosServiceCall.shared
+    private var service: FlickrServiceProtocol = FlickrService.shared
 
     
     func numberOfItems() -> Int {

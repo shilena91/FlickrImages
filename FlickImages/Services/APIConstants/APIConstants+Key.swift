@@ -7,17 +7,17 @@
 
 import Foundation
 
-enum APIConstants {
-    static let baseURL = "https://api.flickr.com/services/rest/"
+enum FlickrAPIConstants {
     static let apiKey = "b59eaa142fbb03d0ba6c93882fd62e30"
-    static let apiMethods_PhotosSearch =  "flickr.photos.search"
+    static let host = "api.flickr.com"
+    static let path = "/services/rest/"
 }
 
-enum APIKey {
+enum FlickrAPIParametersKey {
     static let apiKey = "api_key"
-    static let nojsoncallbackKey = "nojsoncallback"
+    static let nojsoncallback = "nojsoncallback"
     static let method = "method"
-    static let formatKey = "format"
-    static let textKey = "text"
-    static let pageKey = "page"
+    static let format = "format"
+    static let text = "text"
+    static let page = "page"
 }

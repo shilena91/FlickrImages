@@ -7,49 +7,45 @@
 
 import UIKit
 
-protocol PhotosServiceCallProtocol {
+protocol FlickrServiceProtocol {
     func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void)
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void)
 }
 
-final class PhotosServiceCall: PhotosServiceCallProtocol {
+final class FlickrService: FlickrServiceProtocol {
     
-    static let shared = PhotosServiceCall()
+    static let shared = FlickrService()
     private let cache = NSCache<NSString, UIImage>()
-    
-    private let endpoint = APIConstants.baseURL
-    
+        
     private init() {}
     
     
     func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void) {
-        var parameters: [String: String] = [
-            APIKey.method: APIConstants.apiMethods_PhotosSearch,
-            APIKey.apiKey: APIConstants.apiKey,
-            APIKey.nojsoncallbackKey: "1",
-            APIKey.formatKey: "json",
-            APIKey.textKey: searchTerm
-        ]
+        let parameters: [String: String] = FlickrAPIParameters.dictionaryFor(
+            [
+                .method(FlickrAPIMethod.photoSearch.path),
+                .text(searchTerm),
+                .apiKey,
+                .format,
+                .nojsoncallback,
+            ]
+        )
         
-        if searchTerm.isEmpty {
-            parameters[APIKey.textKey] = "Dog"
-        }
+        let restRequest = FlickrRestRequest(host: FlickrAPIConstants.host, path: FlickrAPIConstants.path, parameters: parameters)
         
-        NetworkService.shared.loadData(urlString: endpoint, parameters: parameters, completion: { (result) in
+        NetworkService.shared.get(restRequest: restRequest) { (result) in
             switch result {
             case .success(let data):
                 do {
-                    let decoder = JSONDecoder()
-                    let jsonData = try decoder.decode(PhotosModel.self, from: data)
-                    completion(.success(jsonData))
+                    let photosModel = try FlickrAPIMethod.photoSearch.parseJson(data: data)
+                    completion(.success(photosModel))
                 } catch {
                     completion(.failure(.parseJsonFailed(error)))
                 }
             case .failure(let error):
-                print("network load data error: ", error)
-                completion(.failure(.other))
+                completion(.failure(error))
             }
-        })
+        }
     }
 
     

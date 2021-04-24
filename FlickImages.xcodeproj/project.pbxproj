@@ -24,7 +24,7 @@
 		20869E162630C26E00E2F148 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20869E152630C26E00E2F148 /* UIView+Extension.swift */; };
 		20869E1F2630C81A00E2F148 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20869E1E2630C81A00E2F148 /* UIHelper.swift */; };
 		20869E2E2631643000E2F148 /* APIConstants+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20869E2D2631643000E2F148 /* APIConstants+Key.swift */; };
-		20869E3E26316DFE00E2F148 /* PhotosServiceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20869E3D26316DFE00E2F148 /* PhotosServiceCall.swift */; };
+		20869E3E26316DFE00E2F148 /* FlickrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20869E3D26316DFE00E2F148 /* FlickrService.swift */; };
 		20869E43263180E200E2F148 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20869E42263180E200E2F148 /* Constants.swift */; };
 		20869E482631AA3500E2F148 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20869E472631AA3500E2F148 /* UIViewController+Extension.swift */; };
 		208DEE3E2631BBCA005D63BC /* MainImagesVC+CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEE3D2631BBCA005D63BC /* MainImagesVC+CollectionViewDelegate.swift */; };
@@ -44,6 +44,8 @@
 		208DEEEB2632DBFA005D63BC /* CategoryTypesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEEEA2632DBFA005D63BC /* CategoryTypesViewModel.swift */; };
 		208DEEF02632E168005D63BC /* CategoryKeywordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEEEF2632E168005D63BC /* CategoryKeywordsViewModel.swift */; };
 		208DEF0E263343B5005D63BC /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF0D263343B5005D63BC /* CategoriesDataSource.swift */; };
+		208DEF2C26341DE1005D63BC /* FlickrRestRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF2B26341DE1005D63BC /* FlickrRestRequestModel.swift */; };
+		208DEF3126341E4C005D63BC /* FlickrAPIMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF3026341E4C005D63BC /* FlickrAPIMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +89,7 @@
 		20869E152630C26E00E2F148 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		20869E1E2630C81A00E2F148 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		20869E2D2631643000E2F148 /* APIConstants+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIConstants+Key.swift"; sourceTree = "<group>"; };
-		20869E3D26316DFE00E2F148 /* PhotosServiceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosServiceCall.swift; sourceTree = "<group>"; };
+		20869E3D26316DFE00E2F148 /* FlickrService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrService.swift; sourceTree = "<group>"; };
 		20869E42263180E200E2F148 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		20869E472631AA3500E2F148 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		208DEE3D2631BBCA005D63BC /* MainImagesVC+CollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainImagesVC+CollectionViewDelegate.swift"; sourceTree = "<group>"; };
@@ -107,6 +109,8 @@
 		208DEEEA2632DBFA005D63BC /* CategoryTypesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTypesViewModel.swift; sourceTree = "<group>"; };
 		208DEEEF2632E168005D63BC /* CategoryKeywordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryKeywordsViewModel.swift; sourceTree = "<group>"; };
 		208DEF0D263343B5005D63BC /* CategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
+		208DEF2B26341DE1005D63BC /* FlickrRestRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrRestRequestModel.swift; sourceTree = "<group>"; };
+		208DEF3026341E4C005D63BC /* FlickrAPIMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPIMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,7 +238,9 @@
 			children = (
 				20869E392631673100E2F148 /* APIConstants */,
 				20869E382631671200E2F148 /* Network */,
-				20869E3D26316DFE00E2F148 /* PhotosServiceCall.swift */,
+				20869E3D26316DFE00E2F148 /* FlickrService.swift */,
+				208DEF2B26341DE1005D63BC /* FlickrRestRequestModel.swift */,
+				208DEF3026341E4C005D63BC /* FlickrAPIMethod.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -521,6 +527,8 @@
 				208DEE5F2631D133005D63BC /* CategoriesViewModel.swift in Sources */,
 				208DEE642631F983005D63BC /* CategoryCell.swift in Sources */,
 				20869E102630C16500E2F148 /* FITitleLabel.swift in Sources */,
+				208DEF3126341E4C005D63BC /* FlickrAPIMethod.swift in Sources */,
+				208DEF2C26341DE1005D63BC /* FlickrRestRequestModel.swift in Sources */,
 				20869DED2630A53F00E2F148 /* PhotoCell.swift in Sources */,
 				20869DD6262EC73800E2F148 /* PhotosModel.swift in Sources */,
 				20869DF32630A5C100E2F148 /* FlickrImageView.swift in Sources */,
@@ -535,7 +543,7 @@
 				208DEED026329AC1005D63BC /* Vehicle.swift in Sources */,
 				20869D8C262E105800E2F148 /* AppDelegate.swift in Sources */,
 				208DEEEB2632DBFA005D63BC /* CategoryTypesViewModel.swift in Sources */,
-				20869E3E26316DFE00E2F148 /* PhotosServiceCall.swift in Sources */,
+				20869E3E26316DFE00E2F148 /* FlickrService.swift in Sources */,
 				208DEE5A2631D11A005D63BC /* CategoriesModel.swift in Sources */,
 				208DEEC72632945C005D63BC /* Food.swift in Sources */,
 				20869E2E2631643000E2F148 /* APIConstants+Key.swift in Sources */,
