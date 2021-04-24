@@ -10,13 +10,7 @@ import UIKit
 final class CategoryKeywordsVC: FIBaseTableVC {
     
     private var keywordsViewModel: CategoryKeywordViewModel?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
+    private var dataSource: CategoriesDataSource<CategoryKeywordViewModel>?
     
     init(keywords: KeywordsProtocol) {
         super.init(nibName: nil, bundle: nil)
@@ -28,30 +22,24 @@ final class CategoryKeywordsVC: FIBaseTableVC {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        
+        dataSource = CategoriesDataSource(categories: keywordsViewModel!)
+        tableView.dataSource = dataSource
+    }
+    
 }
 
-// MARK: - TableView Delegate and DataSource
+// MARK: - TableView Delegate
 
-extension CategoryKeywordsVC: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return keywordsViewModel?.numberOfKeywords() ?? 0
-    }
+extension CategoryKeywordsVC: UITableViewDelegate {
 
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CategoryCell.reuseId, for: indexPath) as! CategoryCell
-        
-        if let keyword = keywordsViewModel?.getKeyword(byPosition: indexPath.row) {
-            cell.set(categorizeName: keyword, accessoryType: .none)
-        }
-        
-        return cell
-    }
-
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let keyword = keywordsViewModel?.getKeyword(byPosition: indexPath.row) {
+        if let keyword = keywordsViewModel?.getItem(byPosition: indexPath.row) {
             NotificationCenter.default.post(name: Notification.Name(NotificationConstant.getKeywordName), object: nil, userInfo: [NotificationConstant.getKeywordKey: keyword])
         }
         
