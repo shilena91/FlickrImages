@@ -16,17 +16,18 @@ final class CategoryCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         configure()
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
     func set(categorizeName: String, accessoryType: UITableViewCell.AccessoryType) {
         titleLabel.text = categorizeName
         self.accessoryType = accessoryType
     }
+
     
     private func configure() {
         accessoryType = .disclosureIndicator

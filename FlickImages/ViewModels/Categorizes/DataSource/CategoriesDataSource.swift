@@ -7,7 +7,7 @@
 
 import UIKit
 
-// ViewModel in categories has to implement this protocol
+// ViewModel in categories has to confrom to this protocol
 protocol CategoriesDataSourceProtocol {
     associatedtype T
     

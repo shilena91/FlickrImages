@@ -43,6 +43,7 @@
 		208DEED926329C7B005D63BC /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEED826329C7B005D63BC /* Movie.swift */; };
 		208DEEEB2632DBFA005D63BC /* CategoryTypesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEEEA2632DBFA005D63BC /* CategoryTypesViewModel.swift */; };
 		208DEEF02632E168005D63BC /* CategoryKeywordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEEEF2632E168005D63BC /* CategoryKeywordsViewModel.swift */; };
+		208DEF0E263343B5005D63BC /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF0D263343B5005D63BC /* CategoriesDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		208DEED826329C7B005D63BC /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		208DEEEA2632DBFA005D63BC /* CategoryTypesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTypesViewModel.swift; sourceTree = "<group>"; };
 		208DEEEF2632E168005D63BC /* CategoryKeywordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryKeywordsViewModel.swift; sourceTree = "<group>"; };
+		208DEF0D263343B5005D63BC /* CategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,8 +160,8 @@
 				20869D8B262E105800E2F148 /* AppDelegate.swift */,
 				20869D8D262E105800E2F148 /* SceneDelegate.swift */,
 				20869DC1262E112A00E2F148 /* Models */,
-				20869DDA262EC7AB00E2F148 /* ViewModels */,
 				20869DC2262E113100E2F148 /* Views */,
+				20869DDA262EC7AB00E2F148 /* ViewModels */,
 				20869DC3262E113700E2F148 /* Controllers */,
 				20869DE3262ECDF700E2F148 /* Services */,
 				20869E142630C23600E2F148 /* Extensions */,
@@ -365,11 +367,20 @@
 		208DEEE92632DBD7005D63BC /* Categorizes */ = {
 			isa = PBXGroup;
 			children = (
+				208DEF1B2633663D005D63BC /* DataSource */,
 				208DEE5E2631D133005D63BC /* CategoriesViewModel.swift */,
 				208DEEEA2632DBFA005D63BC /* CategoryTypesViewModel.swift */,
 				208DEEEF2632E168005D63BC /* CategoryKeywordsViewModel.swift */,
 			);
 			path = Categorizes;
+			sourceTree = "<group>";
+		};
+		208DEF1B2633663D005D63BC /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				208DEF0D263343B5005D63BC /* CategoriesDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,6 +516,7 @@
 				208DEEB9263293AD005D63BC /* Animals.swift in Sources */,
 				208DEE3E2631BBCA005D63BC /* MainImagesVC+CollectionViewDelegate.swift in Sources */,
 				20869E162630C26E00E2F148 /* UIView+Extension.swift in Sources */,
+				208DEF0E263343B5005D63BC /* CategoriesDataSource.swift in Sources */,
 				208DEEB226321BBE005D63BC /* CategoryKeywordsVC.swift in Sources */,
 				208DEE5F2631D133005D63BC /* CategoriesViewModel.swift in Sources */,
 				208DEE642631F983005D63BC /* CategoryCell.swift in Sources */,
