@@ -7,6 +7,13 @@
 
 import UIKit
 
+// RestRequest Model has to confrom to this protocol
+protocol RestRequestProtocol {
+    var host: String { get }
+    var path: String { get }
+    var parameters: [String: String] { get }
+}
+
 final class NetworkService {
     
     static let shared = NetworkService()
@@ -14,21 +21,54 @@ final class NetworkService {
     private init() {}
 
     
-    func loadData(urlString: String, parameters: [String: String], completion: @escaping (Result<Data, NetworkErrors>) -> Void) {
-        guard let url = URLComponents(string: urlString) else {
-            completion(.failure(.invalidURL))
-            return
-        }
+    func get<T: RestRequestProtocol>(restRequest: T, completion: @escaping (Result<Data, NetworkErrors>) -> Void) {
+        let request = buildGetRequestURL(from: restRequest)
         
-        var components: URLComponents = url
-        components.queryItems = parameters.map { (key, value) in
+        switch request {
+        case .success(let request):
+            sendRequest(request: request) { (result) in
+                switch result {
+                case .success(let data):
+                    completion(.success(data))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        case .failure(let error):
+            completion(.failure(error))
+        }
+    }
+
+    
+    private func buildGetRequestURL<T: RestRequestProtocol>(from restRequest: T) -> Result<URLRequest, NetworkErrors> {
+        var urlComponents = URLComponents()
+        
+        urlComponents.scheme = "https"
+        urlComponents.host = restRequest.host
+        urlComponents.path = restRequest.path
+        
+        let parameters = restRequest.parameters
+        
+        let queryItems = parameters.map { (key, value) -> URLQueryItem in
             URLQueryItem(name: key, value: value)
         }
+        urlComponents.queryItems = queryItems
         
-        print(components.url ?? "nil url")
+        guard let url = urlComponents.url else {
+            return .failure(.invalidURL)
+        }
         
-        let task = URLSession.shared.dataTask(with: components.url!) { (data, response, error) in
-            
+        print(url)
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        
+        return .success(urlRequest)
+    }
+
+    
+    private func sendRequest(request: URLRequest, completion: @escaping (Result<Data, NetworkErrors>) -> Void) {
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error != nil {
                 completion(.failure(.unableToComplete(error!)))
             }
@@ -50,5 +90,4 @@ final class NetworkService {
         }
         task.resume()
     }
-    
 }
