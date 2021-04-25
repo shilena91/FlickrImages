@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final class PhotosListViewModel {
     
@@ -39,5 +40,20 @@ final class PhotosListViewModel {
                 }
             }
         })
+    }
+
+    
+    func fetchPhotos2(searchTerm: String) -> AnyPublisher<Bool, NetworkErrors> {
+        return service.fetchPhotos2(searchTerm: searchTerm).receive(on: DispatchQueue.main).map({ [weak self] photosModel -> Bool in
+            self?.photosList = photosModel.photos.photo
+            return true
+        }).eraseToAnyPublisher()
+        
+//        sink(receiveCompletion: { _ in
+//            print("Completion")
+//        }, receiveValue: { [weak self] (photoModels) in
+//            guard let self = self else { return }
+//            self.photosList = photoModels.photos.photo
+//        })
     }
 }
