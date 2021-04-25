@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 // RestRequest Model has to confrom to this protocol
 protocol RestRequestProtocol {
@@ -38,6 +39,18 @@ final class NetworkService {
             completion(.failure(error))
         }
     }
+    
+    func get2<T: RestRequestProtocol>(restRequest: T) -> AnyPublisher<Data, URLError> {
+        let request = buildGetRequestURL(from: restRequest)
+        
+        switch request {
+        case .success(let request):
+            return sendRequest2(request: request)
+        case .failure(let error):
+            return Fail(error: error).eraseToAnyPublisher()
+//            completion(.failure(error))
+        }
+    }
 
     
     private func buildGetRequestURL<T: RestRequestProtocol>(from restRequest: T) -> Result<URLRequest, NetworkErrors> {
@@ -55,7 +68,7 @@ final class NetworkService {
         urlComponents.queryItems = queryItems
         
         guard let url = urlComponents.url else {
-            return .failure(.invalidURL)
+            return .failure(.invalidData)
         }
         
         print(url)
@@ -90,4 +103,26 @@ final class NetworkService {
         }
         task.resume()
     }
+
+    
+    private func sendRequest2(request: URLRequest) -> AnyPublisher<Data, NetworkErrors> {
+        let task = URLSession.shared.dataTaskPublisher(for: request).map { (data, response) in
+            return data
+        }.mapError({ error -> NetworkErrors in
+            switch error {
+            case let urlError:
+                return .unableToComplete(urlError)
+            default:
+                return .other
+            }
+        })
+        .catch { (<#NetworkErrors#>) -> Publisher in
+            <#code#>
+        }
+        .eraseToAnyPublisher()
+        
+        
+        return task
+    }
+
 }

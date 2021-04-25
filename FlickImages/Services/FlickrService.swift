@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol FlickrServiceProtocol {
     func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void)
@@ -46,6 +47,23 @@ final class FlickrService: FlickrServiceProtocol {
                 completion(.failure(error))
             }
         }
+    }
+    
+    
+    func fetchPhotos2(searchTerm: String) -> AnyPublisher<PhotosModel, NetworkErrors> {
+        let parameters: [String: String] = FlickrAPIParameters.dictionaryFor(
+            [
+                .method(FlickrAPIMethod.photoSearch.path),
+                .text(searchTerm),
+                .apiKey,
+                .format,
+                .nojsoncallback,
+            ]
+        )
+        
+        let restRequest = FlickrRestRequest(host: FlickrAPIConstants.host, path: FlickrAPIConstants.path, parameters: parameters)
+        
+        
     }
 
     

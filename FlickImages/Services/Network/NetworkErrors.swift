@@ -12,7 +12,7 @@ enum NetworkErrors: CustomDebugStringConvertible, Error {
     case invalidData
     case parseJsonFailed(Error)
     case invalidURL
-    case unableToComplete(Error)
+    case unableToComplete(URLError)
     case other
 
     var debugDescription: String {
