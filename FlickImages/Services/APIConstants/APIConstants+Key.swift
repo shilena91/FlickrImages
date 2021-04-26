@@ -11,6 +11,8 @@ enum FlickrAPIConstants {
     static let apiKey = "b59eaa142fbb03d0ba6c93882fd62e30"
     static let host = "api.flickr.com"
     static let path = "/services/rest/"
+    static let invalidHostForTesting = "api.bad.com"
+    static let invalidPathForTesting = "bad"
 }
 
 enum FlickrAPIParametersKey {

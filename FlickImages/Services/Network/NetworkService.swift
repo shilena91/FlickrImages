@@ -40,7 +40,7 @@ final class NetworkService {
     }
 
     
-    private func buildGetRequestURL<T: RestRequestProtocol>(from restRequest: T) -> Result<URLRequest, NetworkErrors> {
+    func buildGetRequestURL<T: RestRequestProtocol>(from restRequest: T) -> Result<URLRequest, NetworkErrors> {
         var urlComponents = URLComponents()
         
         urlComponents.scheme = "https"
