@@ -9,7 +9,7 @@ import Foundation
 
 struct CategoriesModel: CategoryTypesProtocol {
     
-    var title: String = "Categorizes"
+    var title: String = "Categories"
     
     var count: Int {
         return types.count

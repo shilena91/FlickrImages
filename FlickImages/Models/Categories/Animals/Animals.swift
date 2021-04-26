@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct Animals: CategoryTypesProtocol {
+// Animals confrom to Equatable for testing purpose
+struct Animals: CategoryTypesProtocol, Equatable {
+    static func == (lhs: Animals, rhs: Animals) -> Bool {
+        return lhs.title == rhs.title
+    }
+    
     
     var title: String {
         return "Animals"
@@ -20,7 +25,7 @@ struct Animals: CategoryTypesProtocol {
     var types: [CategoryProtocol] = [Pets(), WildAnimals(), DomesticAnimals()]
 }
 
-struct Pets: KeywordsProtocol {
+struct Pets: KeywordsProtocol, Equatable {
     
     var title: String = "Pets"
     
