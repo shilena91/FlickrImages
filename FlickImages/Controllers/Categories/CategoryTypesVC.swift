@@ -15,8 +15,7 @@ final class CategoryTypesVC: FIBaseTableVC {
     init(category: CategoryTypesProtocol) {
         super.init(nibName: nil, bundle: nil)
         
-        navigationItem.title = category.title
-        self.categoryTypesViewModel = CategoryTypesViewModel(categoryTypes: category.types)
+        self.categoryTypesViewModel = CategoryTypesViewModel(categoryTypes: category)
     }
     
     required init?(coder: NSCoder) {
@@ -25,6 +24,8 @@ final class CategoryTypesVC: FIBaseTableVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = categoryTypesViewModel?.getTitle()
         
         tableView.delegate = self
         dataSource = CategoriesDataSource(categories: categoryTypesViewModel!)

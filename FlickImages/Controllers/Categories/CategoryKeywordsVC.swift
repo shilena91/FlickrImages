@@ -16,7 +16,6 @@ final class CategoryKeywordsVC: FIBaseTableVC {
         super.init(nibName: nil, bundle: nil)
         
         self.keywordsViewModel = CategoryKeywordViewModel(keywords: keywords)
-        navigationItem.title = keywords.title
     }
     
     required init?(coder: NSCoder) {
@@ -26,8 +25,9 @@ final class CategoryKeywordsVC: FIBaseTableVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
+        navigationItem.title = keywordsViewModel?.getTitle()
         
+        tableView.delegate = self
         dataSource = CategoriesDataSource(categories: keywordsViewModel!)
         tableView.dataSource = dataSource
     }
