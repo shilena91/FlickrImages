@@ -22,7 +22,7 @@ class FlickrService_Tests: XCTestCase {
     func testBuildGetInvalidRequestURL() {
         let restRequest = FlickrRestRequest(host: FlickrAPIConstants.invalidHostForTesting, path: FlickrAPIConstants.invalidPathForTesting, parameters: [:])
         
-        let invalidRequest = NetworkService.shared.buildGetRequestURL(from: restRequest)
+        let invalidRequest = NetworkService.shared.buildRequestURL(from: restRequest)
         
         switch invalidRequest {
         case .success(_):
@@ -43,7 +43,7 @@ class FlickrService_Tests: XCTestCase {
         
         let restRequest = FlickrRestRequest(host: FlickrAPIConstants.host, path: FlickrAPIConstants.path, parameters: parameters)
         
-        let validRequest = NetworkService.shared.buildGetRequestURL(from: restRequest)
+        let validRequest = NetworkService.shared.buildRequestURL(from: restRequest)
         
         switch validRequest {
         case .success(let request):

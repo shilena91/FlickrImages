@@ -15,7 +15,7 @@ final class NetworkService {
 
     
     func get<T: RestRequestProtocol>(restRequest: T, completion: @escaping (Result<Data, NetworkErrors>) -> Void) {
-        let request = buildGetRequestURL(from: restRequest)
+        let request = buildRequestURL(from: restRequest)
         
         switch request {
         case .success(let request):
@@ -33,7 +33,7 @@ final class NetworkService {
     }
 
     
-    func buildGetRequestURL<T: RestRequestProtocol>(from restRequest: T) -> Result<URLRequest, NetworkErrors> {
+    func buildRequestURL<T: RestRequestProtocol>(from restRequest: T) -> Result<URLRequest, NetworkErrors> {
         var urlComponents = URLComponents()
         
         urlComponents.scheme = "https"
@@ -54,7 +54,7 @@ final class NetworkService {
         print(url)
         
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "GET"
+        urlRequest.httpMethod = restRequest.httpMethod.rawValue
         
         return .success(urlRequest)
     }

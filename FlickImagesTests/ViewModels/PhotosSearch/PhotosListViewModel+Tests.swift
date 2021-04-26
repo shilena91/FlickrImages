@@ -27,15 +27,19 @@ class PhotosListViewModel_Tests: XCTestCase {
     
     
     func testFetchPhotos() {
+        let promise = expectation(description: "Success result")
+        
         photoListVM?.fetchPhotos(searchTerm: "", completion: { result in
             switch result {
             case .failure(let error):
                 print(error)
                 XCTAssert(false, "photoListVM should be able to fetch")
             case .success(_):
-                break
+                promise.fulfill()
             }
         })
+        
+        wait(for: [promise], timeout: 3)
     }
 
 }

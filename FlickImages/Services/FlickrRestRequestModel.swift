@@ -10,7 +10,15 @@ import Foundation
 struct FlickrRestRequest: RestRequestProtocol {
     let host: String
     let path: String
+    let httpMethod: HTTPMethod
     let parameters: [String: String]
+    
+    init(host: String, path: String, httpMethod: HTTPMethod = .get, parameters: [String: String]) {
+        self.host = host
+        self.path = path
+        self.httpMethod = httpMethod
+        self.parameters = parameters
+    }
 }
 
 enum FlickrAPIParameters {

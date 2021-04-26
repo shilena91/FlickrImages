@@ -8,7 +8,7 @@
 import XCTest
 @testable import FlickImages
 
-class CategoryTypesViewModel_Tests: XCTestCase {
+class CategoryChildsViewModel_Tests: XCTestCase {
 
     private var categoryChildsVM: CategoryChildsViewModel?
     

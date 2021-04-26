@@ -11,5 +11,6 @@ import Foundation
 protocol RestRequestProtocol {
     var host: String { get }
     var path: String { get }
+    var httpMethod: HTTPMethod { get }
     var parameters: [String: String] { get }
 }
