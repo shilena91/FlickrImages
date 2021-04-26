@@ -9,7 +9,7 @@ import UIKit
 
 final class CategoryCell: UITableViewCell {
     
-    static let reuseId = "CategorizeCell"
+    static let reuseId = "CategoryCell"
     private let titleLabel = FITitleLabel(textAlignment: .left, fontSize: Sizes.categoryFontSize, textColor: .label)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -30,10 +30,8 @@ final class CategoryCell: UITableViewCell {
 
     
     private func configure() {
-        accessoryType = .disclosureIndicator
-        contentView.addSubview(titleLabel)
-        
-        titleLabel.pinToEdges(of: contentView, padding: 12)
+        addSubview(titleLabel)
+        titleLabel.pinToEdges(of: self, padding: 12)
     }
     
 }

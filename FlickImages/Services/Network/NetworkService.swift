@@ -7,13 +7,6 @@
 
 import UIKit
 
-// RestRequest Model has to confrom to this protocol
-protocol RestRequestProtocol {
-    var host: String { get }
-    var path: String { get }
-    var parameters: [String: String] { get }
-}
-
 final class NetworkService {
     
     static let shared = NetworkService()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-// Generic dataSource for categories
+// Generic dataSource for categories table views
 class CategoriesDataSource<T: CategoriesDataSourceProtocol>: NSObject, UITableViewDataSource {
     
     var categories: T

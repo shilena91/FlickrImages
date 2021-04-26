@@ -23,8 +23,8 @@ final class PhotosListViewModel {
     }
 
     
-    func getPhoto(byPosition: Int) -> Photo {
-        return photosList[byPosition]
+    func getPhoto(byPosition position: Int) -> Photo {
+        return photosList[position]
     }
 
     
@@ -35,8 +35,8 @@ final class PhotosListViewModel {
             guard let self = self else { return }
             
             switch result {
-            case .success(let jsonData):
-                self.photosList = jsonData.photos.photo
+            case .success(let photosModel):
+                self.photosList = photosModel.photos.photo
                 DispatchQueue.main.async {
                     completion(.success(true))
                 }

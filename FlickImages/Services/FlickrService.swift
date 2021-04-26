@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol FlickrServiceProtocol {
-    func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void)
-    func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void)
-}
-
 final class FlickrService: FlickrServiceProtocol {
     
     static let shared = FlickrService()
