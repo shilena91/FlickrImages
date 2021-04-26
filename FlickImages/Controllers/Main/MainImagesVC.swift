@@ -95,7 +95,7 @@ final class MainImagesVC: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.title = "Flickr Images"
     
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Categorizes", style: .plain, target: self, action: #selector(categorizeButtonPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Categories", style: .plain, target: self, action: #selector(categorizeButtonPressed))
     }
     
     

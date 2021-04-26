@@ -29,7 +29,6 @@ class FIBaseTableVC: UIViewController {
         tableView = UITableView(frame: view.bounds, style: .plain)
         tableView.rowHeight = 50
         tableView.separatorColor = .clear
-        tableView.separatorInset = UIEdgeInsets.zero
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
