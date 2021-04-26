@@ -21,12 +21,14 @@ class CategoriesViewModel_Tests: XCTestCase {
         categoriesVM = nil
         super.tearDown()
     }
+
     
     func testGetTitle() {
         let title = categoriesVM?.getTitle()
         
         XCTAssertEqual(title, "Categories")
     }
+
     
     func testNumberOfItems() {
         let numberOfItems = categoriesVM?.numberOfItems()

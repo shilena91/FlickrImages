@@ -13,7 +13,6 @@ class CategoriesDataSource_Tests: XCTestCase {
     private var categoriesDataSource: CategoriesDataSource<CategoriesViewModel>?
     private var tableView: UITableView?
 
-
     override func setUp() {
         super.setUp()
 

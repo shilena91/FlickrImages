@@ -17,6 +17,7 @@ class FlickrRestRequest_Tests: XCTestCase {
     override class func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+
     
     func testParameters() {
         let parameters: [String: String] = FlickrAPIParameters.dictionaryFor(
