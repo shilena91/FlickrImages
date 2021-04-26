@@ -10,8 +10,13 @@ import Foundation
 final class PhotosListViewModel {
     
     private var photosList = [Photo]()
-    private var service: FlickrServiceProtocol = FlickrService.shared
+    private var service: FlickrServiceProtocol?
 
+    
+    init(service: FlickrServiceProtocol = FlickrService.shared) {
+        self.service = service
+    }
+    
     
     func numberOfItems() -> Int {
         return photosList.count
@@ -24,6 +29,8 @@ final class PhotosListViewModel {
 
     
     func fetchPhotos(searchTerm: String, completion: @escaping (Result<Bool, NetworkErrors>) -> Void) {
+        guard let service = service else { return }
+        
         service.fetchPhotos(searchTerm: searchTerm, completion: { [weak self] (result) in
             guard let self = self else { return }
             
