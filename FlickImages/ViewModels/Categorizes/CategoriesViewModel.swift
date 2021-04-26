@@ -14,7 +14,7 @@ final class CategoriesViewModel: CategoriesDataSourceProtocol {
     private var categories: CategoriesModel = CategoriesModel()
 
     
-    func getTitle() -> String? {
+    func getTitle() -> String {
         return categories.title
     }
     

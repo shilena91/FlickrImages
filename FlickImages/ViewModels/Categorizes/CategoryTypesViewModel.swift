@@ -11,12 +11,17 @@ final class CategoryTypesViewModel: CategoriesDataSourceProtocol {
     
     typealias T = CategoryProtocol
     
-    private var categoryTypes: [CategoryProtocol]
+    private var categoryTypes: CategoryTypesProtocol
         
-    init(categoryTypes: [CategoryProtocol]) {
+    init(categoryTypes: CategoryTypesProtocol) {
         self.categoryTypes = categoryTypes
     }
 
+    
+    func getTitle() -> String {
+        return categoryTypes.title
+    }
+    
     
     func numberOfItems() -> Int {
         return categoryTypes.count
@@ -24,7 +29,7 @@ final class CategoryTypesViewModel: CategoriesDataSourceProtocol {
 
     
     func getItem(byPosition position: Int) -> CategoryProtocol {
-        return categoryTypes[position]
+        return categoryTypes.types[position]
     }
     
 }

@@ -11,19 +11,21 @@ import UIKit
 protocol CategoriesDataSourceProtocol {
     associatedtype T
     
+    func getTitle() -> String
     func numberOfItems() -> Int
     func getItem(byPosition position: Int) -> T
 }
 
+
 // Generic dataSource for categories
 class CategoriesDataSource<T: CategoriesDataSourceProtocol>: NSObject, UITableViewDataSource {
     
-    private var categories: T
+    var categories: T
     
     init(categories: T) {
         self.categories = categories
     }
-
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.numberOfItems()

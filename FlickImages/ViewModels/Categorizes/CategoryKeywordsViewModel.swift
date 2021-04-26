@@ -18,6 +18,11 @@ final class CategoryKeywordViewModel: CategoriesDataSourceProtocol {
     }
 
     
+    func getTitle() -> String {
+        return keywordsModel.title
+    }
+    
+    
     func numberOfItems() -> Int {
         return keywordsModel.keywords.count
     }
