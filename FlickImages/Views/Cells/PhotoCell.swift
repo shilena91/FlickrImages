@@ -11,7 +11,7 @@ final class PhotoCell: UICollectionViewCell {
     
     static let reuseID = "PhotoCell"
     private let flickrImageView = FlickrImageView(frame: .zero)
-    private let imageTitleLabel = FITitleLabel(textAlignment: .center, fontSize: 16, textColor: .black)
+    private let imageTitleLabel = FITitleLabel(textAlignment: .center, fontSize: Sizes.imageTitleFontSize, textColor: .black)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
