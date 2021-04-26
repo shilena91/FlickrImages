@@ -9,9 +9,9 @@ import UIKit
 import Combine
 
 protocol FlickrServiceProtocol {
-    func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void)
+//    func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void)
     func downloadImage(from urlString: String, completion: @escaping (UIImage?) -> Void)
-    func fetchPhotos2(searchTerm: String) -> AnyPublisher<PhotosModel, NetworkErrors>
+    func fetchPhotos(searchTerm: String) -> AnyPublisher<PhotosModel, NetworkErrors>
 }
 
 final class FlickrService: FlickrServiceProtocol {
@@ -22,7 +22,7 @@ final class FlickrService: FlickrServiceProtocol {
     private init() {}
     
     
-    func fetchPhotos(searchTerm: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void) {
+    func fetchPhotos(searchTerm: String) -> AnyPublisher<PhotosModel, NetworkErrors> {
         let parameters: [String: String] = FlickrAPIParameters.dictionaryFor(
             [
                 .method(FlickrAPIMethod.photoSearch.path),
@@ -35,37 +35,7 @@ final class FlickrService: FlickrServiceProtocol {
         
         let restRequest = FlickrRestRequest(host: FlickrAPIConstants.host, path: FlickrAPIConstants.path, parameters: parameters)
         
-//        NetworkService.shared.get(restRequest: restRequest) { (result) in
-//            switch result {
-//            case .success(let data):
-//                do {
-//                    let photosModel = try FlickrAPIMethod.photoSearch.parseJson(data: data)
-//                    completion(.success(photosModel))
-//                } catch {
-//                    completion(.failure(.parseJsonFailed(error)))
-//                }
-//            case .failure(let error):
-//                completion(.failure(error))
-//            }
-//        }
-        
-    }
-    
-    
-    func fetchPhotos2(searchTerm: String) -> AnyPublisher<PhotosModel, NetworkErrors> {
-        let parameters: [String: String] = FlickrAPIParameters.dictionaryFor(
-            [
-                .method(FlickrAPIMethod.photoSearch.path),
-                .text(searchTerm),
-                .apiKey,
-                .format,
-                .nojsoncallback,
-            ]
-        )
-        
-        let restRequest = FlickrRestRequest(host: FlickrAPIConstants.host, path: FlickrAPIConstants.path, parameters: parameters)
-        
-        let photoPublisher: AnyPublisher<Data, NetworkErrors> =  NetworkService.shared.get2(restRequest: restRequest)
+        let photoPublisher: AnyPublisher<Data, NetworkErrors> =  NetworkService.shared.get(restRequest: restRequest)
 
         return photoPublisher.decode(type: PhotosModel.self, decoder: JSONDecoder()).mapError({ .parseJsonFailed($0) }).eraseToAnyPublisher()
     }

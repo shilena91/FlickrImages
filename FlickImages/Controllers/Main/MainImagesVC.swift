@@ -38,19 +38,7 @@ final class MainImagesVC: UIViewController {
 
         let text = searchText.replacingOccurrences(of: " ", with: "+")
 
-//        photosListViewModel.fetchPhotos(searchTerm: text) { [weak self ] (result) in
-//            guard let self = self else { return }
-//            self.activityIndicator.stopAnimating()
-//
-//            switch result {
-//            case .success(_):
-//                self.updateUI()
-//            case .failure(_):
-//                self.showAlert(message: "check your internet and try again!")
-//            }
-//        }
-        
-        cancellable = photosListViewModel.fetchPhotos2(searchTerm: searchText).sink(receiveCompletion: { (error) in
+        cancellable = photosListViewModel.fetchPhotos(searchTerm: text).sink(receiveCompletion: { (error) in
             print(error)
         }, receiveValue: { [weak self] (result) in
             self?.activityIndicator.stopAnimating()
