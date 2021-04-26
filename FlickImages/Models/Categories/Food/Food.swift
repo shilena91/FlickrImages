@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Food: CategoryTypesProtocol {
+struct Food: CategoryChildsProtocol {
     
-    var types: [CategoryProtocol] = [FastFood(), Dessert()]
+    var childCategories: [CategoryProtocol] = [FastFood(), Dessert()]
     
     var title: String = "Food"
     
     var count: Int {
-        return types.count
+        return childCategories.count
     }
 }
 

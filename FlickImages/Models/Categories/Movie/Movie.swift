@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct Movie: CategoryTypesProtocol {
+struct Movie: CategoryChildsProtocol {
     
     var title: String = "Movie"
     
     var count: Int {
-        return types.count
+        return childCategories.count
     }
     
-    var types: [CategoryProtocol] = [ScienceFiction()]
+    var childCategories: [CategoryProtocol] = [ScienceFiction()]
 }
 
 struct ScienceFiction: KeywordsProtocol {

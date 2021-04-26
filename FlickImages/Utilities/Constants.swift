@@ -12,7 +12,6 @@ enum Images {
 }
 
 enum Sizes {
-    static let flickrImageViewSize: CGFloat = 90
     static let categoryFontSize: CGFloat = 15
 }
 

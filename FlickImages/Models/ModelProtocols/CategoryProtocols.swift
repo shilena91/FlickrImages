@@ -14,8 +14,8 @@ protocol CategoryProtocol {
 }
 
 // Model contains child categories has to confrom to this protocol
-protocol CategoryTypesProtocol: CategoryProtocol {
-    var types: [CategoryProtocol] { get }
+protocol CategoryChildsProtocol: CategoryProtocol {
+    var childCategories: [CategoryProtocol] { get }
 }
 
 // Model contains keywords (last layer in categories) has to confrom to this protocol

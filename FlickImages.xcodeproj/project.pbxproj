@@ -40,7 +40,7 @@
 		208DEEC72632945C005D63BC /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEEC62632945C005D63BC /* Food.swift */; };
 		208DEED026329AC1005D63BC /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEECF26329AC1005D63BC /* Vehicle.swift */; };
 		208DEED926329C7B005D63BC /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEED826329C7B005D63BC /* Movie.swift */; };
-		208DEEEB2632DBFA005D63BC /* CategoryTypesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEEEA2632DBFA005D63BC /* CategoryTypesViewModel.swift */; };
+		208DEEEB2632DBFA005D63BC /* CategoryChildsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEEEA2632DBFA005D63BC /* CategoryChildsViewModel.swift */; };
 		208DEEF02632E168005D63BC /* CategoryKeywordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEEEF2632E168005D63BC /* CategoryKeywordsViewModel.swift */; };
 		208DEF0E263343B5005D63BC /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF0D263343B5005D63BC /* CategoriesDataSource.swift */; };
 		208DEF2C26341DE1005D63BC /* FlickrRestRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF2B26341DE1005D63BC /* FlickrRestRequestModel.swift */; };
@@ -53,6 +53,7 @@
 		208DEF772636B868005D63BC /* CategoryTypesViewModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF762636B868005D63BC /* CategoryTypesViewModel+Tests.swift */; };
 		208DEF7C2636BAC7005D63BC /* CategoryKeywordsViewModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF7B2636BAC7005D63BC /* CategoryKeywordsViewModel+Tests.swift */; };
 		208DEF8A2636CDE0005D63BC /* CategoriesDataSource+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF892636CDE0005D63BC /* CategoriesDataSource+Tests.swift */; };
+		208DEF952637221D005D63BC /* CategoriesDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEF942637221D005D63BC /* CategoriesDataSourceProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +113,7 @@
 		208DEEC62632945C005D63BC /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 		208DEECF26329AC1005D63BC /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		208DEED826329C7B005D63BC /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
-		208DEEEA2632DBFA005D63BC /* CategoryTypesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTypesViewModel.swift; sourceTree = "<group>"; };
+		208DEEEA2632DBFA005D63BC /* CategoryChildsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChildsViewModel.swift; sourceTree = "<group>"; };
 		208DEEEF2632E168005D63BC /* CategoryKeywordsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryKeywordsViewModel.swift; sourceTree = "<group>"; };
 		208DEF0D263343B5005D63BC /* CategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
 		208DEF2B26341DE1005D63BC /* FlickrRestRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrRestRequestModel.swift; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		208DEF762636B868005D63BC /* CategoryTypesViewModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryTypesViewModel+Tests.swift"; sourceTree = "<group>"; };
 		208DEF7B2636BAC7005D63BC /* CategoryKeywordsViewModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryKeywordsViewModel+Tests.swift"; sourceTree = "<group>"; };
 		208DEF892636CDE0005D63BC /* CategoriesDataSource+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesDataSource+Tests.swift"; sourceTree = "<group>"; };
+		208DEF942637221D005D63BC /* CategoriesDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataSourceProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,8 +216,9 @@
 		20869DC1262E112A00E2F148 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				208DEF992637225B005D63BC /* PhotoSearch */,
 				208DEEB626329371005D63BC /* Categories */,
-				20869DD5262EC73800E2F148 /* PhotosModel.swift */,
+				208DEF9A2637228B005D63BC /* ModelProtocols */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				208DEF872636CD74005D63BC /* PhotosSearch */,
 				208DEF1B2633663D005D63BC /* DataSource */,
 				208DEEE92632DBD7005D63BC /* Categorizes */,
+				208DEF9B263722AF005D63BC /* ViewModelProtocols */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -346,7 +350,6 @@
 			isa = PBXGroup;
 			children = (
 				208DEE592631D11A005D63BC /* CategoriesModel.swift */,
-				208DEEC0263293D1005D63BC /* CategoryProtocols.swift */,
 				208DEEB72632938A005D63BC /* Animals */,
 				208DEEC526329441005D63BC /* Food */,
 				208DEED726329C4B005D63BC /* Movie */,
@@ -391,7 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				208DEE5E2631D133005D63BC /* CategoriesViewModel.swift */,
-				208DEEEA2632DBFA005D63BC /* CategoryTypesViewModel.swift */,
+				208DEEEA2632DBFA005D63BC /* CategoryChildsViewModel.swift */,
 				208DEEEF2632E168005D63BC /* CategoryKeywordsViewModel.swift */,
 			);
 			path = Categorizes;
@@ -456,6 +459,30 @@
 				208DEF652636AF83005D63BC /* PhotosListViewModel+Tests.swift */,
 			);
 			path = PhotosSearch;
+			sourceTree = "<group>";
+		};
+		208DEF992637225B005D63BC /* PhotoSearch */ = {
+			isa = PBXGroup;
+			children = (
+				20869DD5262EC73800E2F148 /* PhotosModel.swift */,
+			);
+			path = PhotoSearch;
+			sourceTree = "<group>";
+		};
+		208DEF9A2637228B005D63BC /* ModelProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				208DEEC0263293D1005D63BC /* CategoryProtocols.swift */,
+			);
+			path = ModelProtocols;
+			sourceTree = "<group>";
+		};
+		208DEF9B263722AF005D63BC /* ViewModelProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				208DEF942637221D005D63BC /* CategoriesDataSourceProtocol.swift */,
+			);
+			path = ViewModelProtocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -608,11 +635,12 @@
 				208DEED926329C7B005D63BC /* Movie.swift in Sources */,
 				208DEE522631D008005D63BC /* CategoriesVC.swift in Sources */,
 				208DEE462631BC1F005D63BC /* MainImagesVC+SearchBarDelegate.swift in Sources */,
+				208DEF952637221D005D63BC /* CategoriesDataSourceProtocol.swift in Sources */,
 				20869D90262E105800E2F148 /* MainImagesVC.swift in Sources */,
 				20869DDC262EC7CB00E2F148 /* PhotosListViewModel.swift in Sources */,
 				208DEED026329AC1005D63BC /* Vehicle.swift in Sources */,
 				20869D8C262E105800E2F148 /* AppDelegate.swift in Sources */,
-				208DEEEB2632DBFA005D63BC /* CategoryTypesViewModel.swift in Sources */,
+				208DEEEB2632DBFA005D63BC /* CategoryChildsViewModel.swift in Sources */,
 				20869E3E26316DFE00E2F148 /* FlickrService.swift in Sources */,
 				208DEE5A2631D11A005D63BC /* CategoriesModel.swift in Sources */,
 				208DEEC72632945C005D63BC /* Food.swift in Sources */,

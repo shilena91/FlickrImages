@@ -7,29 +7,29 @@
 
 import Foundation
 
-final class CategoryTypesViewModel: CategoriesDataSourceProtocol {
+final class CategoryChildsViewModel: CategoriesDataSourceProtocol {
     
     typealias T = CategoryProtocol
     
-    private var categoryTypes: CategoryTypesProtocol
+    private var categoryChilds: CategoryChildsProtocol
         
-    init(categoryTypes: CategoryTypesProtocol) {
-        self.categoryTypes = categoryTypes
+    init(categoryChilds: CategoryChildsProtocol) {
+        self.categoryChilds = categoryChilds
     }
 
     
     func getTitle() -> String {
-        return categoryTypes.title
+        return categoryChilds.title
     }
     
     
     func numberOfItems() -> Int {
-        return categoryTypes.count
+        return categoryChilds.count
     }
 
     
     func getItem(byPosition position: Int) -> CategoryProtocol {
-        return categoryTypes.types[position]
+        return categoryChilds.childCategories[position]
     }
     
 }

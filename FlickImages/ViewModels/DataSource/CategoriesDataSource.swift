@@ -7,16 +7,6 @@
 
 import UIKit
 
-// ViewModel in categories has to confrom to this protocol
-protocol CategoriesDataSourceProtocol {
-    associatedtype T
-    
-    func getTitle() -> String
-    func numberOfItems() -> Int
-    func getItem(byPosition position: Int) -> T
-}
-
-
 // Generic dataSource for categories
 class CategoriesDataSource<T: CategoriesDataSourceProtocol>: NSObject, UITableViewDataSource {
     

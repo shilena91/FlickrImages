@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct Vehicle: CategoryTypesProtocol {
+struct Vehicle: CategoryChildsProtocol {
     
     var title: String = "Vehicle"
     
     var count: Int {
-        return types.count
+        return childCategories.count
     }
     
-    var types: [CategoryProtocol] = [Motorcycle(), Car()]
+    var childCategories: [CategoryProtocol] = [Motorcycle(), Car()]
 }
 
 struct Motorcycle: KeywordsProtocol {

@@ -27,9 +27,9 @@ final class CategoriesVC: FIBaseTableVC {
 extension CategoriesVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let category = categoriesViewModel.getItem(byPosition: indexPath.row) as! CategoryTypesProtocol
+        let category = categoriesViewModel.getItem(byPosition: indexPath.row) as! CategoryChildsProtocol
         
-        let destVC = CategoryTypesVC(category: category)
+        let destVC = CategoryChildsVC(category: category)
         
         navigationController?.pushViewController(destVC, animated: true)
     }

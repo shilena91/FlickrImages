@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class CategoryTypesVC: FIBaseTableVC {
+final class CategoryChildsVC: FIBaseTableVC {
 
-    private var categoryTypesViewModel: CategoryTypesViewModel?
-    private var dataSource: CategoriesDataSource<CategoryTypesViewModel>?
+    private var categoryChildsViewModel: CategoryChildsViewModel?
+    private var dataSource: CategoriesDataSource<CategoryChildsViewModel>?
     
-    init(category: CategoryTypesProtocol) {
+    init(category: CategoryChildsProtocol) {
         super.init(nibName: nil, bundle: nil)
         
-        self.categoryTypesViewModel = CategoryTypesViewModel(categoryTypes: category)
+        self.categoryChildsViewModel = CategoryChildsViewModel(categoryChilds: category)
     }
     
     required init?(coder: NSCoder) {
@@ -25,10 +25,10 @@ final class CategoryTypesVC: FIBaseTableVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = categoryTypesViewModel?.getTitle()
+        navigationItem.title = categoryChildsViewModel?.getTitle()
         
         tableView.delegate = self
-        dataSource = CategoriesDataSource(categories: categoryTypesViewModel!)
+        dataSource = CategoriesDataSource(categories: categoryChildsViewModel!)
         tableView.dataSource = dataSource
     }
     
@@ -36,11 +36,11 @@ final class CategoryTypesVC: FIBaseTableVC {
 
 // MARK: - TableView Delegate
 
-extension CategoryTypesVC: UITableViewDelegate {
+extension CategoryChildsVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let categoryType = categoryTypesViewModel?.getItem(byPosition: indexPath.row) as? KeywordsProtocol {
+        if let categoryType = categoryChildsViewModel?.getItem(byPosition: indexPath.row) as? KeywordsProtocol {
             
             let destVC = CategoryKeywordsVC(keywords: categoryType)
             navigationController?.pushViewController(destVC, animated: true)

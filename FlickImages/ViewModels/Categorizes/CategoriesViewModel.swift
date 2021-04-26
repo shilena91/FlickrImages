@@ -25,7 +25,7 @@ final class CategoriesViewModel: CategoriesDataSourceProtocol {
 
     
     func getItem(byPosition position: Int) -> CategoryProtocol {
-        return categories.types[position]
+        return categories.childCategories[position]
     }
     
 }

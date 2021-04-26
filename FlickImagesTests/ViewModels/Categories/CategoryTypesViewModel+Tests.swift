@@ -10,38 +10,38 @@ import XCTest
 
 class CategoryTypesViewModel_Tests: XCTestCase {
 
-    private var categoryTypesVM: CategoryTypesViewModel?
+    private var categoryChildsVM: CategoryChildsViewModel?
     
     override func setUp() {
         super.setUp()
         
-        let categoryTypes: CategoryTypesProtocol = CategoriesViewModel().getItem(byPosition: 0) as! CategoryTypesProtocol
+        let categoryChilds: CategoryChildsProtocol = CategoriesViewModel().getItem(byPosition: 0) as! CategoryChildsProtocol
         
-        categoryTypesVM = CategoryTypesViewModel(categoryTypes: categoryTypes)
+        categoryChildsVM = CategoryChildsViewModel(categoryChilds: categoryChilds)
     }
 
     override func tearDown() {
-        categoryTypesVM = nil
+        categoryChildsVM = nil
         super.tearDown()
     }
 
     
     func testGetTitle() {
-        let title = categoryTypesVM?.getTitle()
+        let title = categoryChildsVM?.getTitle()
         
         XCTAssertEqual(title, "Animals")
     }
 
     
     func testNumberOfItems() {
-        let numberOfItems = categoryTypesVM?.numberOfItems()
+        let numberOfItems = categoryChildsVM?.numberOfItems()
         
         XCTAssertEqual(numberOfItems, 3, "Expect 3 items: pets, wild animals, domestic animals")
     }
 
     
     func testGetItem() {
-        let item = categoryTypesVM?.getItem(byPosition: 0) as! Pets
+        let item = categoryChildsVM?.getItem(byPosition: 0) as! Pets
         
         XCTAssertEqual(item, Pets())
     }

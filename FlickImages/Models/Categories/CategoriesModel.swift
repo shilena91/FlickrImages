@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct CategoriesModel: CategoryTypesProtocol {
+struct CategoriesModel: CategoryChildsProtocol {
     
     var title: String = "Categories"
     
     var count: Int {
-        return types.count
+        return childCategories.count
     }
     
-    var types: [CategoryProtocol] = [Animals(), Food(), Movie(), Vehicle()]
+    var childCategories: [CategoryProtocol] = [Animals(), Food(), Movie(), Vehicle()]
 }
