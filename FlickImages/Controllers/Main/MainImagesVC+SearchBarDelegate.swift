@@ -20,9 +20,9 @@ extension MainImagesVC: UISearchBarDelegate {
     }
     
     
-    private func handleFlickrSearch(_ searchText: String) {
-        if !searchText.isEmpty {
-            viewModelFetchPhotos(searchText)
+    private func handleFlickrSearch(_ searchTerm: String) {
+        if !searchTerm.isEmpty {
+            viewModelFetchPhotos(searchTerm)
         }
     }
 }

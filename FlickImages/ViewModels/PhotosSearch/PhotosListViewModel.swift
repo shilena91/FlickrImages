@@ -11,6 +11,7 @@ final class PhotosListViewModel {
     
     private var photosList = [Photo]()
     private var service: FlickrServiceProtocol?
+    private var searchText: String = ""
 
     
     init(service: FlickrServiceProtocol = FlickrService.shared) {
@@ -31,7 +32,9 @@ final class PhotosListViewModel {
     func fetchPhotos(searchTerm: String, completion: @escaping (Result<Bool, NetworkErrors>) -> Void) {
         guard let service = service else { return }
         
-        service.fetchPhotos(searchTerm: searchTerm, completion: { [weak self] (result) in
+        searchText = searchTerm.replacingOccurrences(of: " ", with: "+")
+
+        service.fetchPhotos(searchText: searchText, completion: { [weak self] (result) in
             guard let self = self else { return }
             
             switch result {
@@ -41,6 +44,7 @@ final class PhotosListViewModel {
                     completion(.success(true))
                 }
             case .failure(let error):
+                print(error)
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
