@@ -14,6 +14,7 @@ enum Images {
 enum Sizes {
     static let categoryFontSize: CGFloat = 15
     static let imageTitleFontSize: CGFloat = 16
+    static let emptyStateMessageFontSize: CGFloat = 28
 }
 
 enum NotificationConstant {

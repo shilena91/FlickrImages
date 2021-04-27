@@ -36,7 +36,9 @@ final class FlickrImageView: UIImageView {
             guard let self = self else { return }
 
             DispatchQueue.main.async {
-                self.image = image
+                if let image = image {
+                    self.image = image
+                }
             }
         }
     }
