@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainImagesVC: UIViewController {
+final class MainImagesVC: FIDataLoadingVC {
 
     var photosListViewModel = PhotosListViewModel()
     
@@ -19,7 +19,6 @@ final class MainImagesVC: UIViewController {
               
         configureCollectionView()
         configureNavigationController()
-        configureActivityIndicator()
         
         viewModelFetchPhotos()
         
@@ -31,14 +30,12 @@ final class MainImagesVC: UIViewController {
     }
     
     
-    func viewModelFetchPhotos(_ searchText: String = "") {
-        activityIndicator.startAnimating()
+    func viewModelFetchPhotos(_ searchTerm: String = "") {
+        showLoadingView()
 
-        let text = searchText.replacingOccurrences(of: " ", with: "+")
-
-        photosListViewModel.fetchPhotos(searchTerm: text) { [weak self ] (result) in
+        photosListViewModel.fetchPhotos(searchTerm: searchTerm) { [weak self ] (result) in
             guard let self = self else { return }
-            self.activityIndicator.stopAnimating()
+            self.dismissLoadingView()
             
             switch result {
             case .success(_):
@@ -53,11 +50,13 @@ final class MainImagesVC: UIViewController {
     
     private func updateUI() {
         if photosListViewModel.numberOfItems() == 0 {
-            showAlert(message: "Can't find any photo from your search, try something else!")
-            return
+            showEmptyStateView(with: "Can't find any photo from your search, try something else!", in: view)
+            collectionView.reloadData()
+        } else {
+            dismissEmptyStateView()
+            collectionView.reloadData()
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
         }
-        collectionView.reloadData()
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: false)
     }
 
     
@@ -69,12 +68,13 @@ final class MainImagesVC: UIViewController {
     }
     
     
-    @objc private func categorizeButtonPressed() {
+    @objc private func categoriesButtonPressed() {
         let destVC = CategoriesVC()
         let navController = UINavigationController(rootViewController: destVC)
 
         present(navController, animated: true)
     }
+    
     // MARK: - Congigure UI
     
     private func configureCollectionView() {
@@ -89,22 +89,13 @@ final class MainImagesVC: UIViewController {
     
     private func configureNavigationController() {
         let searchController = UISearchController()
-        
+
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         navigationItem.title = "Flickr Images"
-    
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Categories", style: .plain, target: self, action: #selector(categorizeButtonPressed))
-    }
-    
-    
-    private func configureActivityIndicator() {
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityIndicator.center(inView: view)
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Categories", style: .plain, target: self, action: #selector(categoriesButtonPressed))
     }
     
 }
@@ -117,7 +108,7 @@ extension MainImagesVC: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         // hide search bar when user scroll down
-        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y > 0) {
+        if (scrollView.panGestureRecognizer.translation(in: scrollView.superview).y > 0) {
             navigationItem.hidesSearchBarWhenScrolling = false
         } else {
             navigationItem.hidesSearchBarWhenScrolling = true
