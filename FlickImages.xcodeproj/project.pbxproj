@@ -57,6 +57,9 @@
 		208DEFA726372FCA005D63BC /* RestRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEFA626372FCA005D63BC /* RestRequestProtocol.swift */; };
 		208DEFAF26373001005D63BC /* FlickrServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEFAE26373001005D63BC /* FlickrServiceProtocol.swift */; };
 		208DEFBB26374614005D63BC /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEFBA26374614005D63BC /* HTTPMethods.swift */; };
+		208DEFC426374C67005D63BC /* MainImagesVC+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEFC326374C67005D63BC /* MainImagesVC+Tests.swift */; };
+		208DEFCC2637FBEA005D63BC /* FIDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEFCB2637FBEA005D63BC /* FIDataLoadingVC.swift */; };
+		208DEFD12637FC48005D63BC /* FIEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208DEFD02637FC48005D63BC /* FIEmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +136,9 @@
 		208DEFA626372FCA005D63BC /* RestRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestRequestProtocol.swift; sourceTree = "<group>"; };
 		208DEFAE26373001005D63BC /* FlickrServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrServiceProtocol.swift; sourceTree = "<group>"; };
 		208DEFBA26374614005D63BC /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
+		208DEFC326374C67005D63BC /* MainImagesVC+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainImagesVC+Tests.swift"; sourceTree = "<group>"; };
+		208DEFCB2637FBEA005D63BC /* FIDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIDataLoadingVC.swift; sourceTree = "<group>"; };
+		208DEFD02637FC48005D63BC /* FIEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIEmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +208,7 @@
 		20869DA1262E105A00E2F148 /* FlickImagesTests */ = {
 			isa = PBXGroup;
 			children = (
+				208DEFC226374C43005D63BC /* Controllers */,
 				208DEF642636AF64005D63BC /* ViewModels */,
 				208DEF46263690D9005D63BC /* Networking */,
 				208DEF542636A452005D63BC /* mockPhotosModel.json */,
@@ -235,6 +242,7 @@
 				20869E512631AECB00E2F148 /* Cells */,
 				20869E0B2630C0E500E2F148 /* Labels */,
 				20869DF12630A5A400E2F148 /* Images */,
+				208DEFD02637FC48005D63BC /* FIEmptyStateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -245,6 +253,7 @@
 				208DEE502631CFDA005D63BC /* Categories */,
 				208DEE3C2631BB79005D63BC /* Main */,
 				208DEEAC26320656005D63BC /* FIBaseTableVC.swift */,
+				208DEFCB2637FBEA005D63BC /* FIDataLoadingVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -510,6 +519,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		208DEFC226374C43005D63BC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				208DEFC326374C67005D63BC /* MainImagesVC+Tests.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -640,6 +657,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208DEFCC2637FBEA005D63BC /* FIDataLoadingVC.swift in Sources */,
 				20869E482631AA3500E2F148 /* UIViewController+Extension.swift in Sources */,
 				208DEEB9263293AD005D63BC /* Animals.swift in Sources */,
 				208DEE3E2631BBCA005D63BC /* MainImagesVC+CollectionViewDelegate.swift in Sources */,
@@ -665,6 +683,7 @@
 				20869D90262E105800E2F148 /* MainImagesVC.swift in Sources */,
 				20869DDC262EC7CB00E2F148 /* PhotosListViewModel.swift in Sources */,
 				208DEED026329AC1005D63BC /* Vehicle.swift in Sources */,
+				208DEFD12637FC48005D63BC /* FIEmptyStateView.swift in Sources */,
 				20869D8C262E105800E2F148 /* AppDelegate.swift in Sources */,
 				208DEEEB2632DBFA005D63BC /* CategoryChildsViewModel.swift in Sources */,
 				20869E3E26316DFE00E2F148 /* FlickrService.swift in Sources */,
@@ -691,6 +710,7 @@
 				208DEF662636AF83005D63BC /* PhotosListViewModel+Tests.swift in Sources */,
 				208DEF4826369119005D63BC /* FlickrRestRequest+Tests.swift in Sources */,
 				208DEF6F2636B3D0005D63BC /* CategoriesViewModel+Tests.swift in Sources */,
+				208DEFC426374C67005D63BC /* MainImagesVC+Tests.swift in Sources */,
 				208DEF7C2636BAC7005D63BC /* CategoryKeywordsViewModel+Tests.swift in Sources */,
 				208DEF8A2636CDE0005D63BC /* CategoriesDataSource+Tests.swift in Sources */,
 			);
