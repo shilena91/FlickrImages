@@ -41,9 +41,11 @@ class CategoryChildsViewModel_Tests: XCTestCase {
 
     
     func testGetItem() {
-        let item = categoryChildsVM?.getItem(byPosition: 0) as! Pets
+        let item = categoryChildsVM?.getItem(byPosition: 0)
         
-        XCTAssertEqual(item, Pets())
+        let pet = Pets()
+        
+        XCTAssertEqual(item?.title, pet.title)
     }
 
 }

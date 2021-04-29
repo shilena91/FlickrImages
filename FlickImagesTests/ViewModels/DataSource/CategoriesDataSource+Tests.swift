@@ -48,7 +48,9 @@ class CategoriesDataSource_Tests: XCTestCase {
     func testGetItem() {
         let item = categoriesDataSource?.categories.getItem(byPosition: 0)
         
-        XCTAssertEqual(item!.title, "Animals")
+        let animals = Animals()
+        
+        XCTAssertEqual(item!.title, animals.title)
     }
     
 }
