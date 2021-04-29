@@ -23,7 +23,7 @@ class FlickrRestRequest_Tests: XCTestCase {
         let parameters: [String: String] = FlickrAPIParameters.dictionaryFor(
             [
                 .method(FlickrAPIMethod.photoSearch.path),
-                .text("Dog"),
+                .text(nil),
                 .apiKey,
                 .format,
                 .nojsoncallback,
@@ -32,5 +32,6 @@ class FlickrRestRequest_Tests: XCTestCase {
         
         XCTAssertNotNil(parameters)
         XCTAssertEqual(parameters[FlickrAPIParametersKey.method], FlickrAPIMethod.photoSearch.path)
+        XCTAssertEqual(parameters[FlickrAPIParametersKey.text], "Dog")
     }
 }

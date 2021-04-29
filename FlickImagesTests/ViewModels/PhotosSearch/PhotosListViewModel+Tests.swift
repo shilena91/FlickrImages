@@ -26,14 +26,14 @@ class PhotosListViewModel_Tests: XCTestCase {
     }
     
     
-    func testFetchPhotos() {
+    func testFetchPhotosWhenAppOpen() {
         let promise = expectation(description: "Success result")
         
-        photoListVM?.fetchPhotos(searchTerm: "", completion: { [weak self] result in
+        photoListVM?.fetchPhotos(searchTerm: nil, completion: { [weak self] result in
             switch result {
             case .failure(let error):
                 print(error)
-                XCTAssert(false, "photoListVM should be able to fetch")
+                XCTAssert(false, "photoListVM should be able to fetch photos")
             case .success(_):
                 if self!.photoListVM!.numberOfItems() > 0 {
                     promise.fulfill()
@@ -54,13 +54,30 @@ class PhotosListViewModel_Tests: XCTestCase {
                 print(error)
                 XCTAssert(false, "photoListVM should still call API successfully")
             case .success(_):
-                if self!.photoListVM!.numberOfItems() == 0 {
+                if self?.photoListVM?.numberOfItems() == 0 {
                     promise.fulfill()
                 }
             }
         })
         
         wait(for: [promise], timeout: 3)
+    }
+
+    
+    func testImageURL() {
+        let file = Bundle(for: FlickrService_Tests.self).url(forResource: "mockPhotosModel", withExtension: "json")
+        
+        let data = try! Data(contentsOf: file!)
+        
+        do {
+            let decoded = try FlickrAPIMethod.photoSearch.parseJson(data: data)
+            let firstPhotoImageURL = decoded.photos.photo.first?.flickrImageURL()
+            let mockImageURL = "https://live.staticflickr.com/65535/51140125339_8ede520502.jpg"
+            XCTAssertEqual(mockImageURL, firstPhotoImageURL)
+        } catch {
+            print(error)
+            XCTAssertThrowsError("Decoding should have passed")
+        }
     }
 
 }
