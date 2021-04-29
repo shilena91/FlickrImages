@@ -16,7 +16,7 @@ final class MainImagesVC: FIDataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-              
+
         configureCollectionView()
         configureNavigationController()
         
@@ -30,10 +30,10 @@ final class MainImagesVC: FIDataLoadingVC {
     }
     
     
-    func viewModelFetchPhotos(_ searchTerm: String = "") {
+    func viewModelFetchPhotos(_ searchTerm: String? = nil) {
         showLoadingView()
 
-        photosListViewModel.fetchPhotos(searchTerm: searchTerm) { [weak self ] (result) in
+        photosListViewModel.fetchPhotos(searchTerm: searchTerm) { [weak self] (result) in
             guard let self = self else { return }
             self.dismissLoadingView()
             

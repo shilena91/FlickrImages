@@ -26,7 +26,7 @@ enum FlickrAPIParameters {
     case nojsoncallback
     case method(String)
     case format
-    case text(String)
+    case text(String?)
     case page(Int?)
     
     static func dictionaryFor(_ requestParamenters: [FlickrAPIParameters]) -> [String: String] {
@@ -43,7 +43,7 @@ enum FlickrAPIParameters {
             case .format:
                 parameters[FlickrAPIParametersKey.format] = "json"
             case .text(let text):
-                parameters[FlickrAPIParametersKey.text] = (!text.isEmpty) ? text : "Dog"
+                parameters[FlickrAPIParametersKey.text] = (text != nil) ? text : "Dog"
             case .page(let page):
                 parameters[FlickrAPIParametersKey.page] = (page != nil) ? String(page!) : "1"
             }

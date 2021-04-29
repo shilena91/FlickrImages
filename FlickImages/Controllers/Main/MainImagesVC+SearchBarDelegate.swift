@@ -21,8 +21,12 @@ extension MainImagesVC: UISearchBarDelegate {
     
     
     private func handleFlickrSearch(_ searchTerm: String) {
-        if !searchTerm.isEmpty {
-            viewModelFetchPhotos(searchTerm)
+        let text = searchTerm.trimmingCharacters(in: .whitespaces)
+        
+        // not calling viewModelFetchPhotos when user enter string with only whitespace
+        if text.isEmpty {
+            return
         }
+        viewModelFetchPhotos(searchTerm)
     }
 }

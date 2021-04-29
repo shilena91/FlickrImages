@@ -15,7 +15,7 @@ final class FlickrService: FlickrServiceProtocol {
     private init() {}
     
     
-    func fetchPhotos(searchText: String, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void) {
+    func fetchPhotos(searchText: String?, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void) {
         let parameters: [String: String] = FlickrAPIParameters.dictionaryFor(
             [
                 .method(FlickrAPIMethod.photoSearch.path),
