@@ -16,22 +16,38 @@ class MainImagesVC_Tests: XCTestCase {
         super.setUp()
         
         mainImageVC = MainImagesVC()
+
+        let searchController = UISearchController()
+        
+        searchController.searchBar.delegate = mainImageVC
+        mainImageVC?.navigationItem.searchController = searchController
     }
 
     override func tearDown() {
         mainImageVC = nil
         super.tearDown()
     }
-    
-    
-    func testSearchTextWithWhiteSpaces() {
-        let searchController = UISearchController()
-        
-        searchController.searchBar.delegate = mainImageVC
-        mainImageVC?.navigationItem.searchController = searchController
+
+
+    func testSearchTextWithWhitespaces() {
         let searchBar = mainImageVC?.navigationItem.searchController?.searchBar
         
-        searchBar?.text = "   Corgi Dogs Black   "
+        searchBar?.text = "Corgi Dogs Black"
+        
+        mainImageVC?.searchBarSearchButtonClicked(searchBar!)
+        
+        XCTAssertEqual(mainImageVC?.photosListViewModel.searchText, "Corgi+Dogs+Black")
+    }
+
+
+    func testSearchTextWithOnlyWhitespaces() {
+        let searchBar = mainImageVC?.navigationItem.searchController?.searchBar
+        
+        searchBar?.text = "Corgi Dogs Black"
+        
+        mainImageVC?.searchBarSearchButtonClicked(searchBar!)
+                
+        searchBar?.text = "   "
         
         mainImageVC?.searchBarSearchButtonClicked(searchBar!)
         
