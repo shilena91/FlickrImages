@@ -28,13 +28,13 @@ class FlickrImageView_Tests: XCTestCase {
         
         let dumbURLString = "https://live.staticflickr.com/65535/51140125339_8ede520502.jpn"
         
+        flickrImageView?.service = FlickrService()
         flickrImageView?.downloadImage(from: dumbURLString)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             if self.flickrImageView?.image == Images.placeholder {
                 promise.fulfill()
             }
-            
         }
         
         wait(for: [promise], timeout: 3)
