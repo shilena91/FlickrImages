@@ -9,10 +9,10 @@ import UIKit
 
 final class FlickrService: FlickrServiceProtocol {
     
-    static let shared = FlickrService()
+//    static let shared = FlickrService()
     private let cache = NSCache<NSString, UIImage>()
         
-    private init() {}
+//    private init() {}
     
     
     func fetchPhotos(searchText: String?, completion: @escaping (Result<PhotosModel, NetworkErrors>) -> Void) {
@@ -57,8 +57,8 @@ final class FlickrService: FlickrServiceProtocol {
 
         }
         
-        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
-            guard let self = self,
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard
                 error == nil,
                 let response = response as? HTTPURLResponse, response.statusCode == 200,
                 let data = data,

@@ -10,11 +10,11 @@ import Foundation
 final class PhotosListViewModel {
     
     private var photosList = [Photo]()
-    private var service: FlickrServiceProtocol?
+    private(set) var service: FlickrServiceProtocol?
     private(set) var searchText: String?
 
     
-    init(service: FlickrServiceProtocol = FlickrService.shared) {
+    init(service: FlickrServiceProtocol = FlickrService()) {
         self.service = service
     }
     

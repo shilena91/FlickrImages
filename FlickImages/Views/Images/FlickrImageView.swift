@@ -10,6 +10,7 @@ import UIKit
 final class FlickrImageView: UIImageView {
     
     private let placeholderImage = Images.placeholder
+    var service: FlickrServiceProtocol?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,15 +25,12 @@ final class FlickrImageView: UIImageView {
     
     private func configure() {
         image = placeholderImage
-        layer.cornerRadius = 10
-        layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
     }
     
     
     func downloadImage(from urlString: String) {
-        FlickrService.shared.downloadImage(from: urlString) { [weak self] (image) in
+        service?.downloadImage(from: urlString) { [weak self] (image) in
             guard let self = self else { return }
 
             DispatchQueue.main.async {

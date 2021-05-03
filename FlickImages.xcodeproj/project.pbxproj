@@ -893,6 +893,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hoang.FlickImages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -912,6 +913,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hoang.FlickImages;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

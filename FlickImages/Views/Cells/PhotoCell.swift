@@ -25,8 +25,9 @@ final class PhotoCell: UICollectionViewCell {
     }
     
     
-    func set(photo: Photo) {
+    func set(photo: Photo, service: FlickrServiceProtocol) {
         imageTitleLabel.text = photo.title
+        flickrImageView.service = service
         flickrImageView.downloadImage(from: photo.flickrImageURL())
     }
     
@@ -34,9 +35,9 @@ final class PhotoCell: UICollectionViewCell {
     private func configure() {
         backgroundColor = .white
 
-        layer.borderWidth = 1
         layer.cornerRadius = 10
         layer.borderColor = UIColor.clear.cgColor
+        clipsToBounds = true
 
         addSubViews(flickrImageView, imageTitleLabel)
                 
@@ -53,5 +54,11 @@ final class PhotoCell: UICollectionViewCell {
             imageTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             imageTitleLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+
+    
+    override func prepareForReuse() {
+        flickrImageView.image = Images.placeholder
+        imageTitleLabel.text = nil
     }
 }
